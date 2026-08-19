@@ -7,16 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F124D9FD3034AD8600932BFF /* logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F124D9FC3034AD8600932BFF /* logger.swift */; };
+		F124DA003034DB1B00932BFF /* enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F124D9FF3034DB1B00932BFF /* enums.swift */; };
+		F124DA023034EF1C00932BFF /* wrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F124DA013034EF1C00932BFF /* wrappers.swift */; };
+		F151718B302DF37F003C0C70 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F151718A302DF37F003C0C70 /* PopoverView.swift */; };
+		F1528B97302E5CBA002DA6AF /* dowloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1528B96302E5CBA002DA6AF /* dowloader.swift */; };
+		F1BFB3F83033B23800B704AD /* yt-dlp in Resources */ = {isa = PBXBuildFile; fileRef = F1BFB3F73033B23800B704AD /* yt-dlp */; };
 		F1CE3874302D1EDF0084F78E /* FastDowloaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CE3873302D1EDF0084F78E /* FastDowloaderApp.swift */; };
-		F1CE3876302D1EDF0084F78E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CE3875302D1EDF0084F78E /* ContentView.swift */; };
 		F1CE3878302D1EE10084F78E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1CE3877302D1EE10084F78E /* Assets.xcassets */; };
 		F1CE387B302D1EE10084F78E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1CE387A302D1EE10084F78E /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F124D9FC3034AD8600932BFF /* logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logger.swift; sourceTree = "<group>"; };
+		F124D9FF3034DB1B00932BFF /* enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enums.swift; sourceTree = "<group>"; };
+		F124DA013034EF1C00932BFF /* wrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wrappers.swift; sourceTree = "<group>"; };
+		F151718A302DF37F003C0C70 /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
+		F1528B96302E5CBA002DA6AF /* dowloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dowloader.swift; sourceTree = "<group>"; };
+		F1BFB3F73033B23800B704AD /* yt-dlp */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "yt-dlp"; path = "../../../../ai_project/dist/yt-dlp"; sourceTree = "<group>"; };
 		F1CE3870302D1EDF0084F78E /* FastDowloader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FastDowloader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1CE3873302D1EDF0084F78E /* FastDowloaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastDowloaderApp.swift; sourceTree = "<group>"; };
-		F1CE3875302D1EDF0084F78E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F1CE3877302D1EE10084F78E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1CE387A302D1EE10084F78E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F1CE387C302D1EE10084F78E /* FastDowloader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FastDowloader.entitlements; sourceTree = "<group>"; };
@@ -33,6 +43,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F1027E853036125A0030B2B7 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				F151718A302DF37F003C0C70 /* PopoverView.swift */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		F124D9FB3034AD5C00932BFF /* logger */ = {
+			isa = PBXGroup;
+			children = (
+				F124D9FC3034AD8600932BFF /* logger.swift */,
+			);
+			path = logger;
+			sourceTree = "<group>";
+		};
+		F124D9FE3034DAFA00932BFF /* domain */ = {
+			isa = PBXGroup;
+			children = (
+				F124D9FF3034DB1B00932BFF /* enums.swift */,
+				F124DA013034EF1C00932BFF /* wrappers.swift */,
+			);
+			path = domain;
+			sourceTree = "<group>";
+		};
+		F1528B94302E4493002DA6AF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F1BFB3F73033B23800B704AD /* yt-dlp */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F1528B95302E5C96002DA6AF /* function */ = {
+			isa = PBXGroup;
+			children = (
+				F1528B96302E5CBA002DA6AF /* dowloader.swift */,
+			);
+			path = function;
+			sourceTree = "<group>";
+		};
 		F1CE3867302D1EDF0084F78E = {
 			isa = PBXGroup;
 			children = (
@@ -52,8 +103,12 @@
 		F1CE3872302D1EDF0084F78E /* FastDowloader */ = {
 			isa = PBXGroup;
 			children = (
+				F1027E853036125A0030B2B7 /* ui */,
+				F124D9FE3034DAFA00932BFF /* domain */,
+				F124D9FB3034AD5C00932BFF /* logger */,
+				F1528B95302E5C96002DA6AF /* function */,
+				F1528B94302E4493002DA6AF /* Resources */,
 				F1CE3873302D1EDF0084F78E /* FastDowloaderApp.swift */,
-				F1CE3875302D1EDF0084F78E /* ContentView.swift */,
 				F1CE3877302D1EE10084F78E /* Assets.xcassets */,
 				F1CE387C302D1EE10084F78E /* FastDowloader.entitlements */,
 				F1CE3879302D1EE10084F78E /* Preview Content */,
@@ -79,6 +134,7 @@
 				F1CE386C302D1EDF0084F78E /* Sources */,
 				F1CE386D302D1EDF0084F78E /* Frameworks */,
 				F1CE386E302D1EDF0084F78E /* Resources */,
+				F104B7853030DB4D009B62A9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -127,6 +183,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1BFB3F83033B23800B704AD /* yt-dlp in Resources */,
 				F1CE387B302D1EE10084F78E /* Preview Assets.xcassets in Resources */,
 				F1CE3878302D1EE10084F78E /* Assets.xcassets in Resources */,
 			);
@@ -134,13 +191,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		F104B7853030DB4D009B62A9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# Run Script para dar permisos a yt-dlp\necho \"🔧 Run Script: Configurando permisos para yt-dlp\"\n\nYTDLP_PATH=\"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Contents/Resources/yt-dlp/yt-dlp\"\n\necho \"📂 Buscando en: $YTDLP_PATH\"\n\nif [ -f \"$YTDLP_PATH\" ]; then\n    echo \"✅ Archivo encontrado\"\n    \n    # Dar permisos de ejecución\n    chmod 755 \"$YTDLP_PATH\"\n    echo \"✅ Permisos 755 establecidos\"\n    \n    # Verificar permisos\n    ls -la \"$YTDLP_PATH\"\n    \n    # Verificar que es ejecutable\n    if [ -x \"$YTDLP_PATH\" ]; then\n        echo \"✅ yt-dlp es ejecutable\"\n    else\n        echo \"⚠️ yt-dlp NO es ejecutable (aunque se intentó)\"\n    fi\nelse\n    echo \"❌ Error: yt-dlp no encontrado en: $YTDLP_PATH\"\n    echo \"📂 Contenido de Resources:\"\n    ls -la \"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Contents/Resources/\" || echo \"   (vacío)\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F1CE386C302D1EDF0084F78E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1CE3876302D1EDF0084F78E /* ContentView.swift in Sources */,
+				F151718B302DF37F003C0C70 /* PopoverView.swift in Sources */,
+				F1528B97302E5CBA002DA6AF /* dowloader.swift in Sources */,
 				F1CE3874302D1EDF0084F78E /* FastDowloaderApp.swift in Sources */,
+				F124DA003034DB1B00932BFF /* enums.swift in Sources */,
+				F124DA023034EF1C00932BFF /* wrappers.swift in Sources */,
+				F124D9FD3034AD8600932BFF /* logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +347,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = FastDowloader/FastDowloader.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -293,6 +375,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = FastDowloader/FastDowloader.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
