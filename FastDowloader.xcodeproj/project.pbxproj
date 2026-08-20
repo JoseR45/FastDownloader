@@ -16,6 +16,7 @@
 		F1CE3874302D1EDF0084F78E /* FastDowloaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CE3873302D1EDF0084F78E /* FastDowloaderApp.swift */; };
 		F1CE3878302D1EE10084F78E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1CE3877302D1EE10084F78E /* Assets.xcassets */; };
 		F1CE387B302D1EE10084F78E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1CE387A302D1EE10084F78E /* Preview Assets.xcassets */; };
+		F1DE936E30379F930015B766 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = F1DE936D30379F930015B766 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		F1CE3877302D1EE10084F78E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1CE387A302D1EE10084F78E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F1CE387C302D1EE10084F78E /* FastDowloader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FastDowloader.entitlements; sourceTree = "<group>"; };
+		F1DE936D30379F930015B766 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 		F1CE3867302D1EDF0084F78E = {
 			isa = PBXGroup;
 			children = (
+				F1DE936D30379F930015B766 /* .gitignore */,
 				F1CE3872302D1EDF0084F78E /* FastDowloader */,
 				F1CE3871302D1EDF0084F78E /* Products */,
 			);
@@ -183,6 +186,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1DE936E30379F930015B766 /* .gitignore in Resources */,
 				F1BFB3F83033B23800B704AD /* yt-dlp in Resources */,
 				F1CE387B302D1EE10084F78E /* Preview Assets.xcassets in Resources */,
 				F1CE3878302D1EE10084F78E /* Assets.xcassets in Resources */,
