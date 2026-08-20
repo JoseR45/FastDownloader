@@ -62,5 +62,5 @@ fastlane/*.env
 # Code Injection
 iOSInjectionProject/
 
-Resources/yt-dlp/
-Resources/yt-dlp/yt-dlp
+FastDowloader/Resources/yt-dlp/
+FastDowloader/Resources/yt-dlp/yt-dlp
