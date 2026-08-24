@@ -7,24 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F108255E3037C04F005AAC74 /* DowloadsQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F108255D3037C04F005AAC74 /* DowloadsQueue.swift */; };
 		F124D9FD3034AD8600932BFF /* logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F124D9FC3034AD8600932BFF /* logger.swift */; };
 		F124DA003034DB1B00932BFF /* enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F124D9FF3034DB1B00932BFF /* enums.swift */; };
 		F124DA023034EF1C00932BFF /* wrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F124DA013034EF1C00932BFF /* wrappers.swift */; };
 		F151718B302DF37F003C0C70 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F151718A302DF37F003C0C70 /* PopoverView.swift */; };
 		F1528B97302E5CBA002DA6AF /* dowloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1528B96302E5CBA002DA6AF /* dowloader.swift */; };
+		F15E82C5303B471200CACB67 /* errorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15E82C4303B471200CACB67 /* errorHelper.swift */; };
 		F1BFB3F83033B23800B704AD /* yt-dlp in Resources */ = {isa = PBXBuildFile; fileRef = F1BFB3F73033B23800B704AD /* yt-dlp */; };
 		F1CE3874302D1EDF0084F78E /* FastDowloaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CE3873302D1EDF0084F78E /* FastDowloaderApp.swift */; };
 		F1CE3878302D1EE10084F78E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1CE3877302D1EE10084F78E /* Assets.xcassets */; };
 		F1CE387B302D1EE10084F78E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1CE387A302D1EE10084F78E /* Preview Assets.xcassets */; };
 		F1DE936E30379F930015B766 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = F1DE936D30379F930015B766 /* .gitignore */; };
+		F1F289293039F01C00138E68 /* interfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F289283039F01C00138E68 /* interfaces.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F108255D3037C04F005AAC74 /* DowloadsQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DowloadsQueue.swift; sourceTree = "<group>"; };
 		F124D9FC3034AD8600932BFF /* logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logger.swift; sourceTree = "<group>"; };
 		F124D9FF3034DB1B00932BFF /* enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enums.swift; sourceTree = "<group>"; };
 		F124DA013034EF1C00932BFF /* wrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wrappers.swift; sourceTree = "<group>"; };
 		F151718A302DF37F003C0C70 /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
 		F1528B96302E5CBA002DA6AF /* dowloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dowloader.swift; sourceTree = "<group>"; };
+		F15E82C4303B471200CACB67 /* errorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = errorHelper.swift; sourceTree = "<group>"; };
 		F1BFB3F73033B23800B704AD /* yt-dlp */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "yt-dlp"; path = "../../../../ai_project/dist/yt-dlp"; sourceTree = "<group>"; };
 		F1CE3870302D1EDF0084F78E /* FastDowloader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FastDowloader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1CE3873302D1EDF0084F78E /* FastDowloaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastDowloaderApp.swift; sourceTree = "<group>"; };
@@ -32,6 +37,7 @@
 		F1CE387A302D1EE10084F78E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F1CE387C302D1EE10084F78E /* FastDowloader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FastDowloader.entitlements; sourceTree = "<group>"; };
 		F1DE936D30379F930015B766 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		F1F289283039F01C00138E68 /* interfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = interfaces.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				F151718A302DF37F003C0C70 /* PopoverView.swift */,
+				F108255D3037C04F005AAC74 /* DowloadsQueue.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -66,6 +73,7 @@
 			children = (
 				F124D9FF3034DB1B00932BFF /* enums.swift */,
 				F124DA013034EF1C00932BFF /* wrappers.swift */,
+				F1F289283039F01C00138E68 /* interfaces.swift */,
 			);
 			path = domain;
 			sourceTree = "<group>";
@@ -78,12 +86,13 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		F1528B95302E5C96002DA6AF /* function */ = {
+		F1528B95302E5C96002DA6AF /* services */ = {
 			isa = PBXGroup;
 			children = (
 				F1528B96302E5CBA002DA6AF /* dowloader.swift */,
+				F15E82C4303B471200CACB67 /* errorHelper.swift */,
 			);
-			path = function;
+			path = services;
 			sourceTree = "<group>";
 		};
 		F1CE3867302D1EDF0084F78E = {
@@ -109,7 +118,7 @@
 				F1027E853036125A0030B2B7 /* ui */,
 				F124D9FE3034DAFA00932BFF /* domain */,
 				F124D9FB3034AD5C00932BFF /* logger */,
-				F1528B95302E5C96002DA6AF /* function */,
+				F1528B95302E5C96002DA6AF /* services */,
 				F1528B94302E4493002DA6AF /* Resources */,
 				F1CE3873302D1EDF0084F78E /* FastDowloaderApp.swift */,
 				F1CE3877302D1EE10084F78E /* Assets.xcassets */,
@@ -223,9 +232,12 @@
 				F151718B302DF37F003C0C70 /* PopoverView.swift in Sources */,
 				F1528B97302E5CBA002DA6AF /* dowloader.swift in Sources */,
 				F1CE3874302D1EDF0084F78E /* FastDowloaderApp.swift in Sources */,
+				F108255E3037C04F005AAC74 /* DowloadsQueue.swift in Sources */,
 				F124DA003034DB1B00932BFF /* enums.swift in Sources */,
 				F124DA023034EF1C00932BFF /* wrappers.swift in Sources */,
 				F124D9FD3034AD8600932BFF /* logger.swift in Sources */,
+				F1F289293039F01C00138E68 /* interfaces.swift in Sources */,
+				F15E82C5303B471200CACB67 /* errorHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

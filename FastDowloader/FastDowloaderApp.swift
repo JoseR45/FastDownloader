@@ -27,8 +27,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         
         if let button = statusItem.button {
-            let image = NSImage(systemSymbolName: "square.and.arrow.down", accessibilityDescription: "Fast Downloader")
-            button.image = image
+            if let image = NSImage(named: "FastDownloaderIcon") {
+                    image.isTemplate = true
+                    image.size = NSSize(width: 32, height: 32)
+                    button.image = image
+                }
             button.action = #selector(togglePopover)
             button.target = self
         }

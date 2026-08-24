@@ -11,7 +11,7 @@ struct PanelView: View {
     @State private var message = ""
     @FocusState private var isFocused: Bool
     @State private var selectedQuality: Quality = .normal
-    @StateObject private var downloadManager = VideoDownloader()
+    @StateObject private var downloadManager = VideoDownloader.shared
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -20,14 +20,24 @@ struct PanelView: View {
                     .font(.headline)
                     .foregroundColor(.primary)
                 Spacer()
-                Image(systemName: "arrow.down")
-                    .font(.title2)
-                    .foregroundColor(.gray)
-                    .symbolRenderingMode(.hierarchical)
+                Button(action: {
+                    DownloadsQueueWindowManager.shared.openWindow()
+                }) {
+                    Image(systemName: "arrow.down")
+                        .font(.title2)
+                        .foregroundColor(.gray)
+                        .symbolRenderingMode(.hierarchical)
+                }
+                .buttonStyle(.plain)
+                .help("Downloads Queue")
+                
+                
+                ///===========================
                 Image(systemName: "folder")
                     .font(.title2)
                     .foregroundColor(.gray)
                     .symbolRenderingMode(.hierarchical)
+                ///===========================
                 
                 Divider()
                 Button(action: {
@@ -41,6 +51,7 @@ struct PanelView: View {
                 .buttonStyle(.plain)
                 .help("Close application")
             }
+            .frame(height: 10)
             Divider()
             
             HStack {
@@ -59,7 +70,6 @@ struct PanelView: View {
                 .controlSize(.regular)
                 .disabled(urlText.isEmpty)
             }
-            .disabled(downloadManager.isDownloading)
             
             HStack {
                 Picker("Quality", selection: $selectedQuality) {

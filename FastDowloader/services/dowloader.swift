@@ -8,6 +8,7 @@ import Foundation
 import OSLog
 
 class VideoDownloader: ObservableObject {
+    static let shared = VideoDownloader()
     @Published var isDownloading = false
     @Published var progress: Double = 0.0
     @Published var statusMessage = ""
@@ -16,13 +17,18 @@ class VideoDownloader: ObservableObject {
     @Published var estimatedTime = ""
     @Published var downloadedSize = ""
     @Published var downloadedProgress = ""
-    
+    @Published var downloadQueue: [Download] = [Download(url: "asd/asd", quality: Quality.normal), Download(url: "asd/aasdad/sd", quality: Quality.extra_low)]
+    @Published var downloadedQueue: [Download] = []
     
     private var process: Process?
+    private var currentDownload: Download?
     private var outputPipe: Pipe?
     private var errorPipe: Pipe?
     private let logger = Logger.downloadManager
     private var LogBuffer: [String] = []
+    
+    private init() { }
+    
     
     // Helpers
     private func getDownloadPath() -> String {
@@ -114,8 +120,17 @@ class VideoDownloader: ObservableObject {
     
 
     func downloadVideo(url: String, quality: Quality) {
+        if isDownloading {
+            DispatchQueue.main.async {
+                self.downloadQueue.append(Download(url: url, quality: quality))
+            }
+            return
+        }
         let downloadPath = getDownloadPath()
+        var download = Download(url: url, quality: quality)
         
+        
+        currentDownload = download
         isDownloading = true
         progress = 0.0
         statusMessage = "50"
@@ -152,8 +167,11 @@ class VideoDownloader: ObservableObject {
             guard let ytDlpPath = Bundle.main.path(forResource: "yt-dlp", ofType: nil, inDirectory: "yt-dlp") else {
                 logger.error("yt-dlp not found in bundle")
                 DispatchQueue.main.async {
-                    self.isDownloading = false
-                    self.statusMessage = "400"
+                       self.isDownloading = false
+                       self.statusMessage = "400"
+                       download.status = DownloadStatus.error
+                       download.errors = ["yt-dlp not found in bundle"]
+                       self.processNextDownload(lastDownload: download)
                 }
                 return
             }
@@ -193,18 +211,22 @@ class VideoDownloader: ObservableObject {
                 process.waitUntilExit()
                 
                 let alreadyDownloaded = self.LogBuffer.contains { $0.contains("has already been downloaded") }
-                print(self.LogBuffer)
                 DispatchQueue.main.async {
                     self.isDownloading = false
                     if process.terminationStatus == 0 || self.progress >= 1.0 || alreadyDownloaded {
                         self.progress = 0.0
                         self.statusMessage = "200"
+                        download.status = DownloadStatus.downloaded
                     } else {
                         self.statusMessage = "400"
+                        download.status = DownloadStatus.error
+                        download.errors = self.LogBuffer
                     }
                     
                     outputPipe.fileHandleForReading.readabilityHandler = nil
                     errorPipe.fileHandleForReading.readabilityHandler = nil
+                    self.processNextDownload(lastDownload: download)
+                    
                 }
                 
                 
@@ -213,9 +235,31 @@ class VideoDownloader: ObservableObject {
                     self.isDownloading = false
                     self.statusMessage = "400"
                     self.logger.error("[Exception] \(error.localizedDescription)")
+                    download.status = DownloadStatus.error
+                    download.errors = self.LogBuffer
+                    self.processNextDownload(lastDownload: download)
                 }
             }
         }
+        
+    }
+    
+    private func processNextDownload(lastDownload: Download ) {
+        DispatchQueue.main.async {
+            self.downloadedQueue.append(lastDownload)
+        }
+        guard !isDownloading else { return }
+        guard let download = downloadQueue.popLast() else { return }
+
+        downloadVideo(
+            url: download.url,
+            quality: download.quality
+        )
+    }
+    
+    func retry(_ download: Download) {
+        downloadedQueue.removeAll { $0.id == download.id }
+        downloadVideo(url: download.url, quality: download.quality)
     }
     
     private func parseProgress(_ output: String) {
@@ -299,6 +343,10 @@ class VideoDownloader: ObservableObject {
             self.isDownloading = false
             self.statusMessage = "500"
             self.progress = 0.0
+            if var currentDownload = self.currentDownload {
+                currentDownload.status = DownloadStatus.canceled
+                self.processNextDownload(lastDownload: currentDownload)
+            }
         }
     }
 }
