@@ -1,6 +1,6 @@
 //
-//  dowloader.swift
-//  FastDowloader
+//  downloader.swift
+//  FastDownloader
 //
 //  Created by Jose Fidalgo on 13-08-26.
 //

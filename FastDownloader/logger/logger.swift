@@ -1,6 +1,6 @@
 //
 //  logger.swift
-//  FastDowloader
+//  FastDownloader
 //
 //  Created by Jose Fidalgo on 18-08-26.
 //

@@ -1,6 +1,6 @@
 //
 //  FastDowloaderApp.swift
-//  FastDowloader
+//  FastDownloader
 //
 //  Created by Jose Fidalgo on 12-08-26.
 //
@@ -9,7 +9,7 @@ import SwiftUI
 import AppKit
 
 @main
-struct FastDowloaderApp: App {
+struct FastDownloaderApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
@@ -24,8 +24,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var popover: NSPopover!
     
     func applicationDidFinishLaunching(_ notification: Notification) {
+        NSApp.setActivationPolicy(.accessory)
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        
+        if let dockIcon = NSImage(named: "FastDownloaderIcon") {
+                    NSApp.applicationIconImage = dockIcon
+                }
         if let button = statusItem.button {
             if let image = NSImage(named: "FastDownloaderIcon") {
                     image.isTemplate = true

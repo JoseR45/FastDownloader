@@ -1,6 +1,6 @@
 //
 //  errorHelper.swift
-//  FastDowloader
+//  FastDownloader
 //
 //  Created by Jose Fidalgo on 23-08-26.
 //

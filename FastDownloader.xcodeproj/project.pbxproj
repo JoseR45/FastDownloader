@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F108255E3037C04F005AAC74 /* DowloadsQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F108255D3037C04F005AAC74 /* DowloadsQueue.swift */; };
+		F108255E3037C04F005AAC74 /* DownloadsQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F108255D3037C04F005AAC74 /* DownloadsQueue.swift */; };
 		F124D9FD3034AD8600932BFF /* logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F124D9FC3034AD8600932BFF /* logger.swift */; };
 		F124DA003034DB1B00932BFF /* enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F124D9FF3034DB1B00932BFF /* enums.swift */; };
 		F124DA023034EF1C00932BFF /* wrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F124DA013034EF1C00932BFF /* wrappers.swift */; };
 		F151718B302DF37F003C0C70 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F151718A302DF37F003C0C70 /* PopoverView.swift */; };
-		F1528B97302E5CBA002DA6AF /* dowloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1528B96302E5CBA002DA6AF /* dowloader.swift */; };
+		F1528B97302E5CBA002DA6AF /* downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1528B96302E5CBA002DA6AF /* downloader.swift */; };
 		F15E82C5303B471200CACB67 /* errorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15E82C4303B471200CACB67 /* errorHelper.swift */; };
 		F1BFB3F83033B23800B704AD /* yt-dlp in Resources */ = {isa = PBXBuildFile; fileRef = F1BFB3F73033B23800B704AD /* yt-dlp */; };
-		F1CE3874302D1EDF0084F78E /* FastDowloaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CE3873302D1EDF0084F78E /* FastDowloaderApp.swift */; };
+		F1CE3874302D1EDF0084F78E /* FastDownloaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CE3873302D1EDF0084F78E /* FastDownloaderApp.swift */; };
 		F1CE3878302D1EE10084F78E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1CE3877302D1EE10084F78E /* Assets.xcassets */; };
 		F1CE387B302D1EE10084F78E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1CE387A302D1EE10084F78E /* Preview Assets.xcassets */; };
 		F1DE936E30379F930015B766 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = F1DE936D30379F930015B766 /* .gitignore */; };
@@ -23,19 +23,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F108255D3037C04F005AAC74 /* DowloadsQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DowloadsQueue.swift; sourceTree = "<group>"; };
+		F108255D3037C04F005AAC74 /* DownloadsQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsQueue.swift; sourceTree = "<group>"; };
 		F124D9FC3034AD8600932BFF /* logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logger.swift; sourceTree = "<group>"; };
 		F124D9FF3034DB1B00932BFF /* enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enums.swift; sourceTree = "<group>"; };
 		F124DA013034EF1C00932BFF /* wrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wrappers.swift; sourceTree = "<group>"; };
 		F151718A302DF37F003C0C70 /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
-		F1528B96302E5CBA002DA6AF /* dowloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dowloader.swift; sourceTree = "<group>"; };
+		F1528B96302E5CBA002DA6AF /* downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = downloader.swift; sourceTree = "<group>"; };
 		F15E82C4303B471200CACB67 /* errorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = errorHelper.swift; sourceTree = "<group>"; };
 		F1BFB3F73033B23800B704AD /* yt-dlp */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "yt-dlp"; path = "../../../../ai_project/dist/yt-dlp"; sourceTree = "<group>"; };
-		F1CE3870302D1EDF0084F78E /* FastDowloader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FastDowloader.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F1CE3873302D1EDF0084F78E /* FastDowloaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastDowloaderApp.swift; sourceTree = "<group>"; };
+		F1CE3870302D1EDF0084F78E /* FastDownloader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FastDownloader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1CE3873302D1EDF0084F78E /* FastDownloaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastDownloaderApp.swift; sourceTree = "<group>"; };
 		F1CE3877302D1EE10084F78E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1CE387A302D1EE10084F78E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		F1CE387C302D1EE10084F78E /* FastDowloader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FastDowloader.entitlements; sourceTree = "<group>"; };
+		F1CE387C302D1EE10084F78E /* FastDownloader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FastDownloader.entitlements; sourceTree = "<group>"; };
 		F1DE936D30379F930015B766 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		F1F289283039F01C00138E68 /* interfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = interfaces.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,7 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				F151718A302DF37F003C0C70 /* PopoverView.swift */,
-				F108255D3037C04F005AAC74 /* DowloadsQueue.swift */,
+				F108255D3037C04F005AAC74 /* DownloadsQueue.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -89,7 +89,7 @@
 		F1528B95302E5C96002DA6AF /* services */ = {
 			isa = PBXGroup;
 			children = (
-				F1528B96302E5CBA002DA6AF /* dowloader.swift */,
+				F1528B96302E5CBA002DA6AF /* downloader.swift */,
 				F15E82C4303B471200CACB67 /* errorHelper.swift */,
 			);
 			path = services;
@@ -99,7 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				F1DE936D30379F930015B766 /* .gitignore */,
-				F1CE3872302D1EDF0084F78E /* FastDowloader */,
+				F1CE3872302D1EDF0084F78E /* FastDownloader */,
 				F1CE3871302D1EDF0084F78E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -107,12 +107,12 @@
 		F1CE3871302D1EDF0084F78E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F1CE3870302D1EDF0084F78E /* FastDowloader.app */,
+				F1CE3870302D1EDF0084F78E /* FastDownloader.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F1CE3872302D1EDF0084F78E /* FastDowloader */ = {
+		F1CE3872302D1EDF0084F78E /* FastDownloader */ = {
 			isa = PBXGroup;
 			children = (
 				F1027E853036125A0030B2B7 /* ui */,
@@ -120,12 +120,12 @@
 				F124D9FB3034AD5C00932BFF /* logger */,
 				F1528B95302E5C96002DA6AF /* services */,
 				F1528B94302E4493002DA6AF /* Resources */,
-				F1CE3873302D1EDF0084F78E /* FastDowloaderApp.swift */,
+				F1CE3873302D1EDF0084F78E /* FastDownloaderApp.swift */,
 				F1CE3877302D1EE10084F78E /* Assets.xcassets */,
-				F1CE387C302D1EE10084F78E /* FastDowloader.entitlements */,
+				F1CE387C302D1EE10084F78E /* FastDownloader.entitlements */,
 				F1CE3879302D1EE10084F78E /* Preview Content */,
 			);
-			path = FastDowloader;
+			path = FastDownloader;
 			sourceTree = "<group>";
 		};
 		F1CE3879302D1EE10084F78E /* Preview Content */ = {
@@ -139,9 +139,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F1CE386F302D1EDF0084F78E /* FastDowloader */ = {
+		F1CE386F302D1EDF0084F78E /* FastDownloader */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F1CE387F302D1EE10084F78E /* Build configuration list for PBXNativeTarget "FastDowloader" */;
+			buildConfigurationList = F1CE387F302D1EE10084F78E /* Build configuration list for PBXNativeTarget "FastDownloader" */;
 			buildPhases = (
 				F1CE386C302D1EDF0084F78E /* Sources */,
 				F1CE386D302D1EDF0084F78E /* Frameworks */,
@@ -152,9 +152,9 @@
 			);
 			dependencies = (
 			);
-			name = FastDowloader;
-			productName = FastDowloader;
-			productReference = F1CE3870302D1EDF0084F78E /* FastDowloader.app */;
+			name = FastDownloader;
+			productName = FastDownloader;
+			productReference = F1CE3870302D1EDF0084F78E /* FastDownloader.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -172,7 +172,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F1CE386B302D1EDF0084F78E /* Build configuration list for PBXProject "FastDowloader" */;
+			buildConfigurationList = F1CE386B302D1EDF0084F78E /* Build configuration list for PBXProject "FastDownloader" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -185,7 +185,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F1CE386F302D1EDF0084F78E /* FastDowloader */,
+				F1CE386F302D1EDF0084F78E /* FastDownloader */,
 			);
 		};
 /* End PBXProject section */
@@ -230,9 +230,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F151718B302DF37F003C0C70 /* PopoverView.swift in Sources */,
-				F1528B97302E5CBA002DA6AF /* dowloader.swift in Sources */,
-				F1CE3874302D1EDF0084F78E /* FastDowloaderApp.swift in Sources */,
-				F108255E3037C04F005AAC74 /* DowloadsQueue.swift in Sources */,
+				F1528B97302E5CBA002DA6AF /* downloader.swift in Sources */,
+				F1CE3874302D1EDF0084F78E /* FastDownloaderApp.swift in Sources */,
+				F108255E3037C04F005AAC74 /* DownloadsQueue.swift in Sources */,
 				F124DA003034DB1B00932BFF /* enums.swift in Sources */,
 				F124DA023034EF1C00932BFF /* wrappers.swift in Sources */,
 				F124D9FD3034AD8600932BFF /* logger.swift in Sources */,
@@ -362,12 +362,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = FastDowloader/FastDowloader.entitlements;
+				CODE_SIGN_ENTITLEMENTS = FastDownloader/FastDownloader.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"FastDowloader/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"FastDownloader/Preview Content\"";
 				DEVELOPMENT_TEAM = 74YPGS9Y5H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -378,7 +378,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Naruto.FastDowloader;
+				PRODUCT_BUNDLE_IDENTIFIER = Naruto.FastDownloader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -390,12 +390,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = FastDowloader/FastDowloader.entitlements;
+				CODE_SIGN_ENTITLEMENTS = FastDownloader/FastDownloader.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"FastDowloader/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"FastDownloader/Preview Content\"";
 				DEVELOPMENT_TEAM = 74YPGS9Y5H;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -406,7 +406,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Naruto.FastDowloader;
+				PRODUCT_BUNDLE_IDENTIFIER = Naruto.FastDownloader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -416,7 +416,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F1CE386B302D1EDF0084F78E /* Build configuration list for PBXProject "FastDowloader" */ = {
+		F1CE386B302D1EDF0084F78E /* Build configuration list for PBXProject "FastDownloader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F1CE387D302D1EE10084F78E /* Debug */,
@@ -425,7 +425,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F1CE387F302D1EE10084F78E /* Build configuration list for PBXNativeTarget "FastDowloader" */ = {
+		F1CE387F302D1EE10084F78E /* Build configuration list for PBXNativeTarget "FastDownloader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F1CE3880302D1EE10084F78E /* Debug */,

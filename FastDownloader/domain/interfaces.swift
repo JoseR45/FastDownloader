@@ -1,6 +1,6 @@
 //
 //  interfaces.swift
-//  FastDowloader
+//  FastDownloader
 //
 //  Created by Jose Fidalgo on 22-08-26.
 //

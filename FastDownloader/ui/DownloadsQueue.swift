@@ -1,6 +1,6 @@
 //
-//  DowloadsQueue.swift
-//  FastDowloader
+//  DownloadsQueue.swift
+//  FastDownloader
 //
 //  Created by Jose Fidalgo on 20-08-26.
 //
