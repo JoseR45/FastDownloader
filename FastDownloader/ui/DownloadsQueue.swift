@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct DownloadsQueueView: View {
-    @Environment(\.dismiss) var dismiss
     @StateObject private var downloadManager = VideoDownloader.shared
-
+    
+    private func checkIfEmptyAndClose() {
+        if downloadManager.downloadQueue.isEmpty && downloadManager.downloadedQueue.isEmpty {
+            DownloadsQueueWindowManager.shared.closeWindow()
+        }
+    }
     var body: some View {
         VStack(spacing: 0) {
             List {
@@ -20,6 +24,11 @@ struct DownloadsQueueView: View {
                             download: $download,
                             retry: { download in
                                 downloadManager.retry(download)
+                                self.checkIfEmptyAndClose()
+                            },
+                            delete: { download in
+                                downloadManager.removeDownload(download)
+                                self.checkIfEmptyAndClose()
                             }
                         )
                     }
@@ -28,55 +37,21 @@ struct DownloadsQueueView: View {
                             download: $download,
                             retry: { download in
                                 downloadManager.retry(download)
+                                self.checkIfEmptyAndClose()
+                            },
+                            delete: { download in
+                                downloadManager.removeDownload(download)
+                                self.checkIfEmptyAndClose()
                             }
                         )
                     }
             }
         }
-        .frame(width: 200, height: 150)
+        .frame(width: 300, height: 350)
         .background(Color(NSColor.windowBackgroundColor))
     }
 }
 
-
-struct DownloadRow: View {
-    @Binding var download: Download
-    var retry: (Download) -> Void
-    
-    var body: some View {
-        HStack {
-            if download.status == DownloadStatus.pending {
-                Image(systemName: "arrow.down.circle")
-            } else if download.status == DownloadStatus.downloaded  {
-                Image(systemName: "checkmark.circle.fill")
-            } else if download.status == DownloadStatus.error {
-                Image(systemName: "exclamationmark.triangle.fill")
-            }
-
-            Text(download.url)
-                .lineLimit(1)
-
-            Spacer()
-
-            Picker("", selection: $download.quality) {
-                Text("Normal").tag(Quality.normal)
-                Text("Low").tag(Quality.low)
-                Text("Extra Low").tag(Quality.extra_low)
-
-            }
-            .labelsHidden()
-
-            if download.status == DownloadStatus.error || download.status == DownloadStatus.canceled {
-                Button {
-                    retry(download)
-                } label: {
-                    Image(systemName: "arrow.clockwise")
-                }
-                .buttonStyle(.borderless)
-            }
-        }
-    }
-}
 
 class DownloadsQueueWindowManager {
     static let shared = DownloadsQueueWindowManager()
@@ -87,7 +62,7 @@ class DownloadsQueueWindowManager {
             let hostingController = NSHostingController(rootView: DownloadsQueueView())
             
             window = NSWindow(contentViewController: hostingController)
-            window?.title = ""
+            window?.title = "Downloads"
             window?.setContentSize(NSSize(width: 200, height: 150))
             window?.styleMask = [.titled, .closable, .miniaturizable]
             window?.resizeIncrements = NSSize(width: 0, height: 0)
@@ -95,6 +70,7 @@ class DownloadsQueueWindowManager {
             window?.standardWindowButton(.zoomButton)?.isHidden = true
             window?.isReleasedWhenClosed = false
             window?.center()
+            NSApp.activate(ignoringOtherApps: true)
             window?.makeKeyAndOrderFront(nil)
             
             NotificationCenter.default.addObserver(
@@ -104,6 +80,7 @@ class DownloadsQueueWindowManager {
                 object: window
             )
         } else {
+            NSApp.activate(ignoringOtherApps: true)
             window?.makeKeyAndOrderFront(nil)
         }
     }
@@ -111,4 +88,9 @@ class DownloadsQueueWindowManager {
     @objc private func windowWillClose() {
         window = nil
     }
+    
+    func closeWindow() {
+            window?.close()
+            window = nil
+        }
 }

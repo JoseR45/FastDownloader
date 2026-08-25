@@ -1,5 +1,5 @@
 //
-//  FastDowloaderApp.swift
+//  FastDownloaderApp.swift
 //  FastDownloader
 //
 //  Created by Jose Fidalgo on 12-08-26.

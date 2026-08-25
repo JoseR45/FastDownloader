@@ -50,6 +50,10 @@ struct ErrorHelper {
         if output.contains("yt-dlp not found") {
             return .ytDlpNotFound
         }
+        
+        if output.contains("the download was canceled") {
+            return .canceled
+        }
 
         if invalidURLPatterns.contains(where: output.contains) {
             return .invalidURL

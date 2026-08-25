@@ -17,9 +17,11 @@ class VideoDownloader: ObservableObject {
     @Published var estimatedTime = ""
     @Published var downloadedSize = ""
     @Published var downloadedProgress = ""
-    @Published var downloadQueue: [Download] = [Download(url: "asd/asd", quality: Quality.normal), Download(url: "asd/aasdad/sd", quality: Quality.extra_low)]
+    @Published var downloadQueue: [Download] = []
     @Published var downloadedQueue: [Download] = []
+    @Published var currentVideoTitle = ""
     
+    private var isCancelled = false
     private var process: Process?
     private var currentDownload: Download?
     private var outputPipe: Pipe?
@@ -87,36 +89,50 @@ class VideoDownloader: ObservableObject {
             "--progress",
             "--verbose",
             "--newline",
-            "--console-title", "false"
         ]
         
         switch quality {
-            case .normal:
-                logger.info("Download NORMAL quality")
-                arguments.append(contentsOf: [
-                    "-f", "bestvideo+bestaudio/best"
-                ])
-                
-            case .low:
-            logger.info("Download LOW quality")
-                arguments.append(contentsOf: [
-                    "-f", "bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/best[height<=480]/best",
-                    "--recode-video", "mp4",
-                    "--postprocessor-args", "-vf scale=854:480 -c:v libx264 -crf 28 -preset slow -maxrate 500k -bufsize 1000k -c:a aac -b:a 96k"
-                ])
-                
-            case .extra_low:
-            logger.info("Download EXTRA_LOW quality")
-                arguments.append(contentsOf: [
-                    "-f", "bestvideo[height<=360][ext=mp4]+bestaudio[ext=m4a]/best[height<=360]/worst",
-                    "--recode-video", "mp4",
-                    "--postprocessor-args", "-vf scale=640:360 -c:v libx264 -crf 32 -preset slow -maxrate 300k -bufsize 600k -c:a aac -b:a 64k"
-                ])
-        }
+        case .normal:
+               logger.info("Download NORMAL quality")
+               arguments.append(contentsOf: [
+                   "-f", "best[ext=mp4]/best"
+               ])
+               
+           case .low:
+               logger.info("Download LOW quality")
+               arguments.append(contentsOf: [
+                   "-f", "best[height<=480][ext=mp4]/best[height<=480]/best"
+               ])
+               
+           case .extra_low:
+               logger.info("Download EXTRA_LOW quality")
+               arguments.append(contentsOf: [
+                   "-f", "best[height<=360][ext=mp4]/best[height<=360]/best"
+               ])        }
         
         return arguments
     }
+    func getDownloadFolderURL(fullPath: String) -> URL {
+        let cleanPath = fullPath.replacingOccurrences(of: "/%(title)s.%(ext)s", with: "")
+        return URL(fileURLWithPath: cleanPath)
+    }
     
+    func getYtDlpPath() -> URL? {
+        let fileManager = FileManager.default
+        let appSupport = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+        let fastDLFolder = appSupport.appendingPathComponent("FastDownloader", isDirectory: true)
+        
+        try? fileManager.createDirectory(at: fastDLFolder, withIntermediateDirectories: true)
+        
+        let externalYtDlp = fastDLFolder.appendingPathComponent("yt-dlp")
+        if !fileManager.fileExists(atPath: externalYtDlp.path) {
+            if let bundledYtDlp = Bundle.main.path(forResource: "yt-dlp", ofType: nil, inDirectory: "yt-dlp") {
+                try? fileManager.copyItem(atPath: bundledYtDlp, toPath: externalYtDlp.path)
+                try? FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: externalYtDlp.path)
+            }
+        }
+        return externalYtDlp
+    }
     
 
     func downloadVideo(url: String, quality: Quality) {
@@ -133,13 +149,14 @@ class VideoDownloader: ObservableObject {
         currentDownload = download
         isDownloading = true
         progress = 0.0
-        statusMessage = "50"
+        statusMessage = "Preparing download…"
         downloadSpeed = ""
         estimatedTime = ""
         downloadedSize = ""
         downloadedProgress = ""
         currentURL = url
         LogBuffer = []
+        currentVideoTitle = ""
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
@@ -164,7 +181,7 @@ class VideoDownloader: ObservableObject {
             environment["TMP"] = ytDlpTemp.path
             process.environment = environment
                     
-            guard let ytDlpPath = Bundle.main.path(forResource: "yt-dlp", ofType: nil, inDirectory: "yt-dlp") else {
+            guard let ytDlpPath = getYtDlpPath() else {
                 logger.error("yt-dlp not found in bundle")
                 DispatchQueue.main.async {
                        self.isDownloading = false
@@ -177,7 +194,7 @@ class VideoDownloader: ObservableObject {
             }
            
             process.environment = environment
-            process.executableURL = URL(fileURLWithPath: ytDlpPath)
+            process.executableURL = ytDlpPath
             
             
             process.arguments = getArgumentsForQuality(url: url, downloadPath: downloadPath, quality: quality)
@@ -195,10 +212,10 @@ class VideoDownloader: ObservableObject {
                 }
             }
             
-            errorPipe.fileHandleForReading.readabilityHandler = { handle in
+            errorPipe.fileHandleForReading.readabilityHandler = { [weak self] handle in
                 let data = handle.availableData
                 if let error = String(data: data, encoding: .utf8), !error.isEmpty {
-                    self.LogBuffer.append(error)
+                    self?.LogBuffer.append(error)
                 }
             }
             
@@ -211,12 +228,20 @@ class VideoDownloader: ObservableObject {
                 process.waitUntilExit()
                 
                 let alreadyDownloaded = self.LogBuffer.contains { $0.contains("has already been downloaded") }
+                
                 DispatchQueue.main.async {
                     self.isDownloading = false
+                    
                     if process.terminationStatus == 0 || self.progress >= 1.0 || alreadyDownloaded {
-                        self.progress = 0.0
                         self.statusMessage = "200"
                         download.status = DownloadStatus.downloaded
+                        download.title = self.currentVideoTitle
+                        download.folderDir = self.getDownloadFolderURL(fullPath: downloadPath)
+                    } else if self.isCancelled {
+                        self.isCancelled = false
+                        self.statusMessage = "500"
+                        download.errors = ["the download was canceled"]
+                        download.status = DownloadStatus.canceled
                     } else {
                         self.statusMessage = "400"
                         download.status = DownloadStatus.error
@@ -225,6 +250,8 @@ class VideoDownloader: ObservableObject {
                     
                     outputPipe.fileHandleForReading.readabilityHandler = nil
                     errorPipe.fileHandleForReading.readabilityHandler = nil
+                    
+                    self.progress = 0.0
                     self.processNextDownload(lastDownload: download)
                     
                 }
@@ -262,6 +289,11 @@ class VideoDownloader: ObservableObject {
         downloadVideo(url: download.url, quality: download.quality)
     }
     
+    func removeDownload(_ download: Download) {
+        downloadQueue.removeAll { $0.id == download.id }
+        downloadedQueue.removeAll { $0.id == download.id }
+    }
+    
     private func parseProgress(_ output: String) {
         let lines = output.split(separator: "\n")
         
@@ -271,7 +303,6 @@ class VideoDownloader: ObservableObject {
         
         for line in lines {
             let lineStr = String(line)
-            
             currentPercent = 0.0
             totalSizeValue = 0.0
             totalSizeUnit  = ""
@@ -320,12 +351,6 @@ class VideoDownloader: ObservableObject {
                     self.downloadedProgress = "\(downloadedFormatted)"
                 }
             }
-
-            if lineStr.contains("Merging") {
-                DispatchQueue.main.async {
-                    self.statusMessage = "100"
-                }
-            }
             
             if lineStr.contains("[download]") {
                 DispatchQueue.main.async {
@@ -333,21 +358,30 @@ class VideoDownloader: ObservableObject {
                 }
             }
             
+            if lineStr.contains("Downloading") || lineStr.contains("Checking") {
+                if let range = lineStr.range(of: ":\\s*(.*)", options: .regularExpression) {
+                    var text = String(lineStr[range])
+                    text = text.replacingOccurrences(of: ":", with: "").trimmingCharacters(in: .whitespaces)
+                    DispatchQueue.main.async {
+                        self.statusMessage = text
+                    }
+                }
+            }
+            
+            if lineStr.contains("[download] Destination:") {
+                let path = lineStr.replacingOccurrences(of: "[download] Destination: ", with: "")
+                   let cleanTitle = URL(fileURLWithPath: path).deletingPathExtension().lastPathComponent
+                   DispatchQueue.main.async {
+                       self.currentVideoTitle = cleanTitle
+                   }
+            }
         }
     }
     
     func cancelDownload() {
+        isCancelled = true
         process?.terminate()
         process = nil
-        DispatchQueue.main.async {
-            self.isDownloading = false
-            self.statusMessage = "500"
-            self.progress = 0.0
-            if var currentDownload = self.currentDownload {
-                currentDownload.status = DownloadStatus.canceled
-                self.processNextDownload(lastDownload: currentDownload)
-            }
-        }
     }
 }
 

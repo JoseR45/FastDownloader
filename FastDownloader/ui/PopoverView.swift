@@ -8,7 +8,6 @@ import SwiftUI
 
 struct PanelView: View {
     @State private var urlText = ""
-    @State private var message = ""
     @FocusState private var isFocused: Bool
     @State private var selectedQuality: Quality = .normal
     @StateObject private var downloadManager = VideoDownloader.shared
@@ -16,6 +15,19 @@ struct PanelView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack{
+                Button(action: {
+                    NSApplication.shared.terminate(nil)
+                }) {
+                    Image(systemName: "xmark")
+                        .font(.title2)
+                        .foregroundColor(.gray)
+                        .symbolRenderingMode(.hierarchical)
+                }
+                .buttonStyle(.plain)
+                .help("Close application")
+                
+                Divider()
+                
                 Text("Fast Downloader")
                     .font(.headline)
                     .foregroundColor(.primary)
@@ -30,26 +42,17 @@ struct PanelView: View {
                 }
                 .buttonStyle(.plain)
                 .help("Downloads Queue")
+                .disabled(downloadManager.downloadQueue.isEmpty && downloadManager.downloadedQueue.isEmpty)
                 
                 
-                ///===========================
-                Image(systemName: "folder")
-                    .font(.title2)
-                    .foregroundColor(.gray)
-                    .symbolRenderingMode(.hierarchical)
-                ///===========================
-                
-                Divider()
-                Button(action: {
-                    NSApplication.shared.terminate(nil)
-                }) {
-                    Image(systemName: "xmark")
-                        .font(.title2)
-                        .foregroundColor(.gray)
-                        .symbolRenderingMode(.hierarchical)
-                }
-                .buttonStyle(.plain)
-                .help("Close application")
+                // TODO: - Change Download Directory (Coming Soon)
+                // This button will allow users to select a custom folder where their downloads will be saved.
+                //
+                //            Image(systemName: "folder")
+                //                .font(.title2)
+                //                .foregroundColor(.gray)
+                //                .symbolRenderingMode(.hierarchical)
+
             }
             .frame(height: 10)
             Divider()
@@ -83,11 +86,23 @@ struct PanelView: View {
             .background(Color.gray.opacity(0.1))
             .cornerRadius(6)
             .accessibilityLabel("Quality Picker")
-            .disabled(downloadManager.isDownloading)
-            
+                    
             if downloadManager.isDownloading || downloadManager.progress > 0 {
                 Divider()
                 HStack {
+                    if downloadManager.currentVideoTitle.isEmpty {
+                        HStack(spacing: 8) {
+                            ProgressView()
+                                .controlSize(.small)
+                            
+                            Text(downloadManager.statusMessage)
+                                .foregroundColor(.secondary)
+                                .lineLimit(1)
+                        }
+                    } else {
+                        Text(downloadManager.currentVideoTitle)
+                            .foregroundColor(.primary)
+                    }
                     Spacer()
                     Button(action: {
                         downloadManager.cancelDownload()
@@ -104,14 +119,14 @@ struct PanelView: View {
                 
                 VStack(spacing: 4) {
                     HStack {
-                        if downloadManager.statusMessage != "50" {
+                        if downloadManager.statusMessage == "60" {
                             Text("\(Int(downloadManager.progress * 100))%")
                                 .font(.caption)
                                 .foregroundColor(.gray)
                                 .frame(width: 40, alignment: .leading)
                         }
                         
-                        if downloadManager.statusMessage == "50" {
+                        if downloadManager.statusMessage != "60" {
                             MacProgressIndicator(
                                 isIndeterminate: .constant(true),
                                 progress: .constant(0.0),
@@ -164,9 +179,8 @@ struct PanelView: View {
         
         downloadManager.downloadVideo(url: cleanText, quality: selectedQuality)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             urlText = ""
-            message = ""
         }
     }
 }

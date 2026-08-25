@@ -24,6 +24,7 @@ enum DownloadError {
     case videoUnavailable
     case formatUnavailable
     case restrictedVideo
+    case canceled
     case unknown
 
     var userMessage: String {
@@ -45,7 +46,10 @@ enum DownloadError {
 
         case .restrictedVideo:
             return "This video is restricted or private."
-
+            
+        case .canceled:
+            return "The download was canceled."
+            
         case .unknown:
             return "The video could not be downloaded."
         }
