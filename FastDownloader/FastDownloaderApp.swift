@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        if let dockIcon = NSImage(named: "FastDownloaderIcon") {
+        if let dockIcon = NSImage(named: "AppIcon") {
                     NSApp.applicationIconImage = dockIcon
                 }
         if let button = statusItem.button {
