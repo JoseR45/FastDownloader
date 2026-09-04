@@ -5,12 +5,15 @@
 //  Created by Jose Fidalgo on 13-08-26.
 //
 import SwiftUI
+import OSLog
 
 struct PanelView: View {
     @State private var urlText = ""
     @FocusState private var isFocused: Bool
     @State private var selectedQuality: Quality = .normal
     @StateObject private var downloadManager = VideoDownloader.shared
+    @StateObject private var engineManager  = EngineManager.shared
+    private let logger = Logger.userInterface
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -32,6 +35,28 @@ struct PanelView: View {
                     .font(.headline)
                     .foregroundColor(.primary)
                 Spacer()
+                
+                Button(action: {
+                
+                    AppDelegate.shared?.popover.performClose(nil)
+                    
+                    Task {
+                        do {
+                            try await engineManager.updateEngine()
+                        } catch {
+                            logger.error("Error updating fast-downloader-engine: \(error.localizedDescription)")
+                        }
+                    }
+                }) {
+                    Image(systemName: "arrow.triangle.2.circlepath")
+                        .font(.title2)
+                        .foregroundColor(.gray)
+                        .symbolRenderingMode(.hierarchical)
+                }
+                .buttonStyle(.plain)
+                .help("Update")
+                .disabled(EngineManager.shared.isUpdatingEngine || downloadManager.isDownloading)
+                
                 Button(action: {
                     DownloadsQueueWindowManager.shared.openWindow()
                 }) {

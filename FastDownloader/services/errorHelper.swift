@@ -47,8 +47,8 @@ struct ErrorHelper {
             .joined(separator: "\n")
             .lowercased()
 
-        if output.contains("yt-dlp not found") {
-            return .ytDlpNotFound
+        if output.contains("fast-downloader-engine not found") {
+            return .fastDEngineNotFound
         }
         
         if output.contains("the download was canceled") {

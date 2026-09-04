@@ -11,10 +11,14 @@
 		F124D9FD3034AD8600932BFF /* logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F124D9FC3034AD8600932BFF /* logger.swift */; };
 		F124DA003034DB1B00932BFF /* enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F124D9FF3034DB1B00932BFF /* enums.swift */; };
 		F124DA023034EF1C00932BFF /* wrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F124DA013034EF1C00932BFF /* wrappers.swift */; };
+		F14FFD573049DE4100A8094E /* MenuBarProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FFD563049DE4100A8094E /* MenuBarProgress.swift */; };
+		F14FFD59304A1C3700A8094E /* fast-downloader-engine in Resources */ = {isa = PBXBuildFile; fileRef = F14FFD58304A1C3700A8094E /* fast-downloader-engine */; };
+		F14FFD5B304A3D6900A8094E /* engineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FFD5A304A3D6900A8094E /* engineManager.swift */; };
+		F14FFD5D304A782900A8094E /* notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FFD5C304A782900A8094E /* notifications.swift */; };
+		F14FFD5F304A783900A8094E /* models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14FFD5E304A783900A8094E /* models.swift */; };
 		F151718B302DF37F003C0C70 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F151718A302DF37F003C0C70 /* PopoverView.swift */; };
 		F1528B97302E5CBA002DA6AF /* downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1528B96302E5CBA002DA6AF /* downloader.swift */; };
 		F15E82C5303B471200CACB67 /* errorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15E82C4303B471200CACB67 /* errorHelper.swift */; };
-		F1BFB3F83033B23800B704AD /* yt-dlp in Resources */ = {isa = PBXBuildFile; fileRef = F1BFB3F73033B23800B704AD /* yt-dlp */; };
 		F1CE3874302D1EDF0084F78E /* FastDownloaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CE3873302D1EDF0084F78E /* FastDownloaderApp.swift */; };
 		F1CE3878302D1EE10084F78E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1CE3877302D1EE10084F78E /* Assets.xcassets */; };
 		F1CE387B302D1EE10084F78E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1CE387A302D1EE10084F78E /* Preview Assets.xcassets */; };
@@ -28,10 +32,14 @@
 		F124D9FC3034AD8600932BFF /* logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logger.swift; sourceTree = "<group>"; };
 		F124D9FF3034DB1B00932BFF /* enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enums.swift; sourceTree = "<group>"; };
 		F124DA013034EF1C00932BFF /* wrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wrappers.swift; sourceTree = "<group>"; };
+		F14FFD563049DE4100A8094E /* MenuBarProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarProgress.swift; sourceTree = "<group>"; };
+		F14FFD58304A1C3700A8094E /* fast-downloader-engine */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "fast-downloader-engine"; sourceTree = "<group>"; };
+		F14FFD5A304A3D6900A8094E /* engineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = engineManager.swift; sourceTree = "<group>"; };
+		F14FFD5C304A782900A8094E /* notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notifications.swift; sourceTree = "<group>"; };
+		F14FFD5E304A783900A8094E /* models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = models.swift; sourceTree = "<group>"; };
 		F151718A302DF37F003C0C70 /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
 		F1528B96302E5CBA002DA6AF /* downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = downloader.swift; sourceTree = "<group>"; };
 		F15E82C4303B471200CACB67 /* errorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = errorHelper.swift; sourceTree = "<group>"; };
-		F1BFB3F73033B23800B704AD /* yt-dlp */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "yt-dlp"; path = "../../../../ai_project/dist/yt-dlp"; sourceTree = "<group>"; };
 		F1CE3870302D1EDF0084F78E /* FastDownloader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FastDownloader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1CE3873302D1EDF0084F78E /* FastDownloaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastDownloaderApp.swift; sourceTree = "<group>"; };
 		F1CE3877302D1EE10084F78E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,6 +67,7 @@
 				F151718A302DF37F003C0C70 /* PopoverView.swift */,
 				F108255D3037C04F005AAC74 /* DownloadsQueue.swift */,
 				F1EAC10D303CCB8B00F433A3 /* DownloadRow.swift */,
+				F14FFD563049DE4100A8094E /* MenuBarProgress.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -77,6 +86,8 @@
 				F124D9FF3034DB1B00932BFF /* enums.swift */,
 				F124DA013034EF1C00932BFF /* wrappers.swift */,
 				F1F289283039F01C00138E68 /* interfaces.swift */,
+				F14FFD5C304A782900A8094E /* notifications.swift */,
+				F14FFD5E304A783900A8094E /* models.swift */,
 			);
 			path = domain;
 			sourceTree = "<group>";
@@ -84,7 +95,7 @@
 		F1528B94302E4493002DA6AF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F1BFB3F73033B23800B704AD /* yt-dlp */,
+				F14FFD58304A1C3700A8094E /* fast-downloader-engine */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -94,6 +105,7 @@
 			children = (
 				F1528B96302E5CBA002DA6AF /* downloader.swift */,
 				F15E82C4303B471200CACB67 /* errorHelper.swift */,
+				F14FFD5A304A3D6900A8094E /* engineManager.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -199,9 +211,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1DE936E30379F930015B766 /* .gitignore in Resources */,
-				F1BFB3F83033B23800B704AD /* yt-dlp in Resources */,
 				F1CE387B302D1EE10084F78E /* Preview Assets.xcassets in Resources */,
 				F1CE3878302D1EE10084F78E /* Assets.xcassets in Resources */,
+				F14FFD59304A1C3700A8094E /* fast-downloader-engine in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,14 +246,18 @@
 			files = (
 				F151718B302DF37F003C0C70 /* PopoverView.swift in Sources */,
 				F1528B97302E5CBA002DA6AF /* downloader.swift in Sources */,
+				F14FFD5D304A782900A8094E /* notifications.swift in Sources */,
 				F1CE3874302D1EDF0084F78E /* FastDownloaderApp.swift in Sources */,
 				F108255E3037C04F005AAC74 /* DownloadsQueue.swift in Sources */,
 				F124DA003034DB1B00932BFF /* enums.swift in Sources */,
+				F14FFD5B304A3D6900A8094E /* engineManager.swift in Sources */,
+				F14FFD5F304A783900A8094E /* models.swift in Sources */,
 				F124DA023034EF1C00932BFF /* wrappers.swift in Sources */,
 				F124D9FD3034AD8600932BFF /* logger.swift in Sources */,
 				F1F289293039F01C00138E68 /* interfaces.swift in Sources */,
 				F1EAC10E303CCB8B00F433A3 /* DownloadRow.swift in Sources */,
 				F15E82C5303B471200CACB67 /* errorHelper.swift in Sources */,
+				F14FFD573049DE4100A8094E /* MenuBarProgress.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

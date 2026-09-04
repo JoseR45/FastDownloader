@@ -6,9 +6,12 @@
 //
 import Foundation
 import OSLog
+import AppKit
+
 
 class VideoDownloader: ObservableObject {
     static let shared = VideoDownloader()
+    
     @Published var isDownloading = false
     @Published var progress: Double = 0.0
     @Published var statusMessage = ""
@@ -92,46 +95,32 @@ class VideoDownloader: ObservableObject {
         ]
         
         switch quality {
+
         case .normal:
-               logger.info("Download NORMAL quality")
-               arguments.append(contentsOf: [
-                   "-f", "best[ext=mp4]/best"
-               ])
-               
-           case .low:
-               logger.info("Download LOW quality")
-               arguments.append(contentsOf: [
-                   "-f", "best[height<=480][ext=mp4]/best[height<=480]/best"
-               ])
-               
-           case .extra_low:
-               logger.info("Download EXTRA_LOW quality")
-               arguments.append(contentsOf: [
-                   "-f", "best[height<=360][ext=mp4]/best[height<=360]/best"
-               ])        }
+            logger.info("Download NORMAL quality")
+            arguments.append(contentsOf: [
+                "-f", "bestvideo+bestaudio/best"
+            ])
+
+        case .low:
+            logger.info("Download LOW quality")
+            arguments.append(contentsOf: [
+                "-f", "bestvideo[height<=480]+bestaudio/best[height<=480]"
+            ])
+
+        case .extra_low:
+            logger.info("Download EXTRA_LOW quality")
+            arguments.append(contentsOf: [
+                "-f", "bestvideo[height<=360]+bestaudio/best[height<=360]"
+            ])
+        }
         
         return arguments
     }
+    
     func getDownloadFolderURL(fullPath: String) -> URL {
         let cleanPath = fullPath.replacingOccurrences(of: "/%(title)s.%(ext)s", with: "")
         return URL(fileURLWithPath: cleanPath)
-    }
-    
-    func getYtDlpPath() -> URL? {
-        let fileManager = FileManager.default
-        let appSupport = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-        let fastDLFolder = appSupport.appendingPathComponent("FastDownloader", isDirectory: true)
-        
-        try? fileManager.createDirectory(at: fastDLFolder, withIntermediateDirectories: true)
-        
-        let externalYtDlp = fastDLFolder.appendingPathComponent("yt-dlp")
-        if !fileManager.fileExists(atPath: externalYtDlp.path) {
-            if let bundledYtDlp = Bundle.main.path(forResource: "yt-dlp", ofType: nil, inDirectory: "yt-dlp") {
-                try? fileManager.copyItem(atPath: bundledYtDlp, toPath: externalYtDlp.path)
-                try? FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: externalYtDlp.path)
-            }
-        }
-        return externalYtDlp
     }
     
 
@@ -161,40 +150,33 @@ class VideoDownloader: ObservableObject {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             
-            let tempDir = FileManager.default.temporaryDirectory
-            let ytDlpTemp = tempDir.appendingPathComponent("yt-dlp-temp")
-               
+            let enginePath: URL
             do {
-                try FileManager.default.createDirectory(at: ytDlpTemp,
-                                                      withIntermediateDirectories: true,
-                                                      attributes: nil)
-                logger.info("Temporary directory created: \(ytDlpTemp.path)")
+                enginePath = try EngineManager.shared.prepareEngine()
             } catch {
-                logger.error("Could not create temporary directory: \(error)")
+                logger.error("Engine unavailable: \(error.localizedDescription)")
+
+                DispatchQueue.main.async {
+                    self.isDownloading = false
+                    self.statusMessage = "400"
+                    download.status = DownloadStatus.error
+                    download.errors = [error.localizedDescription]
+                    self.processNextDownload(lastDownload: download)
+                }
+
+                return
             }
             
+            let engineTemp = EngineManager.shared.engineTempURL
             let process = Process()
             
             var environment = ProcessInfo.processInfo.environment
-            environment["TMPDIR"] = ytDlpTemp.path
-            environment["TEMP"] = ytDlpTemp.path
-            environment["TMP"] = ytDlpTemp.path
+            environment["TMPDIR"] = engineTemp.path
+            environment["TEMP"] = engineTemp.path
+            environment["TMP"] = engineTemp.path
+            
             process.environment = environment
-                    
-            guard let ytDlpPath = getYtDlpPath() else {
-                logger.error("yt-dlp not found in bundle")
-                DispatchQueue.main.async {
-                       self.isDownloading = false
-                       self.statusMessage = "400"
-                       download.status = DownloadStatus.error
-                       download.errors = ["yt-dlp not found in bundle"]
-                       self.processNextDownload(lastDownload: download)
-                }
-                return
-            }
-           
-            process.environment = environment
-            process.executableURL = ytDlpPath
+            process.executableURL = enginePath
             
             
             process.arguments = getArgumentsForQuality(url: url, downloadPath: downloadPath, quality: quality)
@@ -306,7 +288,6 @@ class VideoDownloader: ObservableObject {
             currentPercent = 0.0
             totalSizeValue = 0.0
             totalSizeUnit  = ""
-
             
             if let range = lineStr.range(of: "\\d+\\.?\\d*%", options: .regularExpression) {
                 let percentStr = String(lineStr[range]).replacingOccurrences(of: "%", with: "")

@@ -18,7 +18,7 @@ enum DownloadStatus: String, CaseIterable, Identifiable{
 }
 
 enum DownloadError {
-    case ytDlpNotFound
+    case fastDEngineNotFound
     case noInternetConnection
     case invalidURL
     case videoUnavailable
@@ -29,7 +29,7 @@ enum DownloadError {
 
     var userMessage: String {
         switch self {
-        case .ytDlpNotFound:
+        case .fastDEngineNotFound:
             return "The downloader is not available."
 
         case .noInternetConnection:
