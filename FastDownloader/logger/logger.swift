@@ -13,6 +13,7 @@ extension Logger {
     static let app = Logger(subsystem: subsystem, category: "App")
     static let videoDownloader = Logger(subsystem: subsystem, category: "VideoDownloader")
     static let downloadManager = Logger(subsystem: subsystem, category: "DownloadManager")
+    static let notificationSender = Logger(subsystem: subsystem, category: "NotificationSender")
     static let network = Logger(subsystem: subsystem, category: "Network")
     static let userInterface = Logger(subsystem: subsystem, category: "UI")
 }

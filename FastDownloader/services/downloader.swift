@@ -219,15 +219,27 @@ class VideoDownloader: ObservableObject {
                         download.status = DownloadStatus.downloaded
                         download.title = self.currentVideoTitle
                         download.folderDir = self.getDownloadFolderURL(fullPath: downloadPath)
+                        NotificationSender.shared.send(
+                            title: "Download finished",
+                            message: self.currentVideoTitle
+                        )
                     } else if self.isCancelled {
                         self.isCancelled = false
                         self.statusMessage = "500"
                         download.errors = ["the download was canceled"]
                         download.status = DownloadStatus.canceled
+                        NotificationSender.shared.send(
+                            title: "Download cancelled",
+                            message: self.currentVideoTitle
+                        )
                     } else {
                         self.statusMessage = "400"
                         download.status = DownloadStatus.error
                         download.errors = self.LogBuffer
+                        NotificationSender.shared.send(
+                            title: "Download failed",
+                            message: self.currentVideoTitle.isEmpty ? url : self.currentVideoTitle
+                        )
                     }
                     
                     outputPipe.fileHandleForReading.readabilityHandler = nil
@@ -247,6 +259,12 @@ class VideoDownloader: ObservableObject {
                     download.status = DownloadStatus.error
                     download.errors = self.LogBuffer
                     self.processNextDownload(lastDownload: download)
+                    
+               
+                    NotificationSender.shared.send(
+                        title: "Download failed",
+                        message: self.currentVideoTitle.isEmpty ? url : self.currentVideoTitle
+                    )
                 }
             }
         }

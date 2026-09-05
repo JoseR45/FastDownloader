@@ -177,6 +177,10 @@ final class EngineManager: ObservableObject {
                 remoteRelease.version,
                 than: localVersion
             ) else {
+                NotificationSender.shared.send(
+                    title: "Engine is up to date",
+                    message: "No engine update is available."
+                )
                 return nil
             }
 
@@ -320,6 +324,11 @@ final class EngineManager: ObservableObject {
         )
 
         logger.info("Engine updated successfully")
+        
+        NotificationSender.shared.send(
+            title: "Engine updated",
+            message: "Engine \(version) was successfully installed."
+        )
     }
 
     // MARK: - Install

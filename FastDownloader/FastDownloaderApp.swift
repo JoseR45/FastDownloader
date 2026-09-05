@@ -30,6 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         AppDelegate.shared = self
         NSApp.setActivationPolicy(.accessory)
+        NotificationSender.shared.requestPermission()
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         if let dockIcon = NSImage(named: "AppIcon") {
                     NSApp.applicationIconImage = dockIcon
