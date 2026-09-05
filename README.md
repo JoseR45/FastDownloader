@@ -23,32 +23,59 @@ FastDownloader uses `yt-dlp` to support video downloads from a wide range of web
 2. Drag the `FastDownloader.app` into your **Applications** folder.
 3. Right-click on the app and select **"Open"** to bypass macOS security warnings for the first launch (since it is not notarized yet).
 
-> **Note**: The app uses `yt-dlp` as its download engine. On the first launch, it automatically copies the binary to your `Application Support` folder.
+## Legacy: Manual yt-dlp Updates
 
-## Troubleshooting: Updating yt-dlp Manually
+> **For FastDownloader v0.0.1**
 
-FastDownloader uses the `yt-dlp` binary to extract and download videos. 
-Platforms like YouTube frequently change their internal APIs, which can cause 
+In previous versions, FastDownloader used a standalone `yt-dlp` binary.
+If the binary became outdated, users had to update it manually.
+
+This procedure is no longer required in newer versions. Starting with
+**v0.0.2**, FastDownloader uses the FastDownloader Engine and provides
+an in-app option to update it.
+
+<details>
+<summary>Manual update procedure for v0.0.1</summary>
+
+### Troubleshooting: Updating yt-dlp Manually
+
+FastDownloader v0.0.1 uses the `yt-dlp` binary to extract and download videos.
+Platforms like YouTube frequently change their internal APIs, which can cause
 the old binary to stop working or return errors (e.g., **"HTTP Error 403: Forbidden"**).
 
-If you experience download failures, you can manually update the binary by 
-following these steps:
+If you experience download failures on **v0.0.1**, you can manually update the
+binary by following these steps:
 
-1. **Copy the path to the folder**: Open Finder, press `Cmd + Shift + G`, and paste this path: ~/Library/Application Support/FastDownloader
-2. **Download and replace the file**: Open Terminal and run this command. It will automatically download the latest version and replace the old file:
-```bash
-curl -L "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_macos" -o ~/Library/Application\ Support/FastDownloader/yt-dlp
-```
-4. **Make it executable**: Open Terminal and run:
-```bash
-chmod +x ~/Library/Application Support/FastDownloader/yt-dlp
-```
-5. Remove the quarantine flag (optional, but recommended if macOS blocks it):
-```bash
-xattr -d com.apple.quarantine ~/Library/Application Support/FastDownloader/yt-dlp
-```
+1. **Copy the path to the folder**
+
+   Open Finder, press `Cmd + Shift + G`, and paste:
+
+   `~/Library/Application Support/FastDownloader`
+
+2. **Download and replace the file**
+
+   Open Terminal and run:
+
+   ```bash
+   curl -L "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_macos" -o ~/Library/Application\ Support/FastDownloader/yt-dlp
+   ```
+
+3. **Make it executable**
+
+   ```bash
+   chmod +x ~/Library/Application Support/FastDownloader/yt-dlp
+   ```
+
+4. **Remove the quarantine flag** *(optional, but recommended if macOS blocks it)*
+
+   ```bash
+   xattr -d com.apple.quarantine ~/Library/Application Support/FastDownloader/yt-dlp
+   ```
 
 After these steps, restart FastDownloader and try downloading again.
+
+</details>
+
 
 ## License
 
