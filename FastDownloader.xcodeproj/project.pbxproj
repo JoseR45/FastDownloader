@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F1037879304C8A0F0093BCCB /* notificationsSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1037878304C8A0F0093BCCB /* notificationsSender.swift */; };
 		F108255E3037C04F005AAC74 /* DownloadsQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F108255D3037C04F005AAC74 /* DownloadsQueue.swift */; };
 		F124D9FD3034AD8600932BFF /* logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F124D9FC3034AD8600932BFF /* logger.swift */; };
 		F124DA003034DB1B00932BFF /* enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F124D9FF3034DB1B00932BFF /* enums.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F1037878304C8A0F0093BCCB /* notificationsSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationsSender.swift; sourceTree = "<group>"; };
 		F108255D3037C04F005AAC74 /* DownloadsQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsQueue.swift; sourceTree = "<group>"; };
 		F124D9FC3034AD8600932BFF /* logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logger.swift; sourceTree = "<group>"; };
 		F124D9FF3034DB1B00932BFF /* enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enums.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				F1528B96302E5CBA002DA6AF /* downloader.swift */,
 				F15E82C4303B471200CACB67 /* errorHelper.swift */,
 				F14FFD5A304A3D6900A8094E /* engineManager.swift */,
+				F1037878304C8A0F0093BCCB /* notificationsSender.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				F14FFD5F304A783900A8094E /* models.swift in Sources */,
 				F124DA023034EF1C00932BFF /* wrappers.swift in Sources */,
 				F124D9FD3034AD8600932BFF /* logger.swift in Sources */,
+				F1037879304C8A0F0093BCCB /* notificationsSender.swift in Sources */,
 				F1F289293039F01C00138E68 /* interfaces.swift in Sources */,
 				F1EAC10E303CCB8B00F433A3 /* DownloadRow.swift in Sources */,
 				F15E82C5303B471200CACB67 /* errorHelper.swift in Sources */,
